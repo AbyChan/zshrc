@@ -1,0 +1,12 @@
+node_modules
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+*.bak
+*.swp
+#*
+\#*
+*#
+tags
+*~
