@@ -205,7 +205,7 @@ zle -N        insert-unicode-char
 #autojump
 [[ -s /home/tyan/.autojump/etc/profile.d/autojump.sh  ]] && source /home/tyan/.autojump/etc/profile.d/autojump.sh #debian like
 if exists brew; then
-   [[ -s $(brew --prefix)/etc/profile.d/autojump.sh  ]] && . $(brew --prefix)/etc/profile.d/autojump.sh #mac
+    [[ -s $(brew --prefix)/etc/profile.d/autojump.sh  ]] && . $(brew --prefix)/etc/profile.d/autojump.sh #mac
 fi
 
 # :completion:function:completer:command:argument:tag
@@ -333,7 +333,7 @@ if exists percol; then
 
     zle -N percol_select_history
     bindkey '^R' percol_select_history
-                                  
+    
     function ppgrep() {
         if [[ $1 == "" ]]; then
             PERCOL=percol
@@ -369,6 +369,21 @@ function any() {
     fi
 }
 
+# after cd auto ls
+function chpwd() {
+    emulate -L zsh
+    ls -a
+}
+
+# cd to the root of the current vcs repository
+gr() {
+    # vcsroot=`echo $vcs_info_msg_0_ | cut -d "|" -f 5`
+    vcsroot=`/home/seebi/.vim/scripts/vcsroot.sh`
+    echo $vcsroot && cd $vcsroot
+}
+
+
+
 ###MISC
 ###############################################################
 ###############################################################
@@ -388,3 +403,4 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Crese
 ## trap keyboard interrupt (control-c)
 #trap control_c SIGINT
 
+cat $HOME/.welcome 
